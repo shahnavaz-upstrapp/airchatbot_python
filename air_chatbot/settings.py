@@ -82,17 +82,27 @@ AUTH_USER_MODEL = 'users.User'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#       'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'air_database_db',
+#         'USER': 'root',
+#         'PASSWORD': 'root_123',
+#         'HOST':'localhost',
+#         'PORT':'3306',
+#     }
+# }
+
 DATABASES = {
       'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'air_database_db',
-        'USER': 'root',
-        'PASSWORD': 'root_123',
+        'NAME': 'devstrap_airchatboat_db',
+        'USER': 'devstrap_airchatboatuser',
+        'PASSWORD': 'PHMD.H08D&4p',
         'HOST':'localhost',
         'PORT':'3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
