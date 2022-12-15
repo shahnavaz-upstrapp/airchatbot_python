@@ -57,7 +57,23 @@ class MyFlightBookingsView(APIView):
 				data_info['booking_date'] = ele.booking_date
 				data_info['booking_status'] = ele.booking_status
 				data_info['created_at'] = ele.created_at
-
+				flight_details = dict()
+				flight_details['flight_number'] = ele.flight.flight_number
+				flight_details['airline_name'] = ele.flight.airline_name
+				flight_details['airline_code'] = ele.flight.airline_code
+				flight_details['origin_location'] = ele.flight.origin_location
+				flight_details['origin_airport_name'] = ele.flight.origin_airport_name
+				flight_details['origin_airport_code'] = ele.flight.origin_airport_code
+				flight_details['origin_airport_time'] = ele.flight.origin_airport_time
+				flight_details['origin_airport_est_time'] = ele.flight.origin_airport_est_time
+				flight_details['destination_location'] = ele.flight.destination_location
+				flight_details['destination_airport_name'] = ele.flight.destination_airport_name
+				flight_details['destination_airport_code'] = ele.flight.destination_airport_code
+				flight_details['destination_airport_est_time'] = ele.flight.destination_airport_est_time
+				flight_details['fare'] = ele.flight.fare
+				flight_details['status'] = ele.flight.status
+				data_info['flight'] = flight_details
+    
 				booking_list.append(data_info)
 
 			response_data = dict()
@@ -111,6 +127,11 @@ class MyFlightBookingByIdView(APIView):
     booking_details['booking_status'] = booking_obj.booking_status
     booking_details['created_at'] = booking_obj.created_at
     
+    status_message_dict = {}
+    status_message_dict[1] = "On Time"
+    status_message_dict[2] = "Delayed"
+    status_message_dict[3] = "Cancelled"
+    
     flight_details = dict()
     flight_details['flight_number'] = booking_obj.flight.flight_number
     flight_details['airline_name'] = booking_obj.flight.airline_name
@@ -127,6 +148,7 @@ class MyFlightBookingByIdView(APIView):
     flight_details['destination_airport_est_time'] = booking_obj.flight.destination_airport_est_time
     flight_details['fare'] = booking_obj.flight.fare
     flight_details['status'] = booking_obj.flight.status
+    flight_details['status_message'] = status_message_dict.get(booking_obj.flight.status, 'on Time')
     
     booking_details['flight'] = flight_details
 
